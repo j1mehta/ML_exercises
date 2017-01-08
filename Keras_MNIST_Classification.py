@@ -64,6 +64,7 @@ y_test = np_utils.to_categorical(Y_test)
 num_classes = y_test.shape[1]
 #%%
 # define baseline model
+#Softmax(multinomial logistic regression) explained here: https://www.quora.com/What-is-the-intuition-behind-SoftMax-function
 def baseline_model():
 	# create model
 	model = Sequential()
