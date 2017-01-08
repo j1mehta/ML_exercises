@@ -44,6 +44,9 @@ X_test = X_test.reshape(X_test.shape[0], num_pixels).astype('float32')
 #Sigmoids saturate and kill gradients. A very undesirable property of the sigmoid neuron is that when the neuron’s activation saturates at either tail of 0 or 1, the gradient at these regions is almost zero. Recall that during backpropagation, this (local) gradient will be multiplied to the gradient of this gate’s output for the whole objective. Therefore, if the local gradient is very small, it will effectively “kill” the gradient and almost no signal will flow through the neuron to its weights and recursively to its data. Additionally, one must pay extra caution when initializing the weights of sigmoid neurons to prevent saturation. For example, if the initial weights are too large then most neurons would become saturated and the network will barely learn.
 #Thus, never use sigmoid as activation function, use Relu instead. I don't think normalization is required if using Relu
 # normalize inputs from 0-255 to 0-1
+
+#With Normalization: Error = 1.81%
+#Without Normalization: Error = 52.64%
 X_train = X_train / 255
 X_test = X_test / 255
 #%%
