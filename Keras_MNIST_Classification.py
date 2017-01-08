@@ -66,6 +66,7 @@ num_classes = y_test.shape[1]
 # define baseline model
 #Softmax(multinomial logistic regression) explained here: https://www.quora.com/What-is-the-intuition-behind-SoftMax-function
 #Optimizer: Although we used "Adam" here, it is important to note the original: SGD. https://www.quora.com/Whats-the-difference-between-gradient-descent-and-stochastic-gradient-descent
+#Generally speaking, instead of taking a large step towards the steepest slope on a hill, in stochastic gradient descent you take small steps, which happens to be much faster in practice. You don't have to sum over all the training examples to compute the gradient, you compute the gradient for each training example or small batches at a time.
 #Adam is used here due to the reasons cited here:http://cs231n.github.io/neural-networks-3/
 def baseline_model():
 	# create model
