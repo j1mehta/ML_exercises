@@ -73,7 +73,7 @@ num_classes = y_test.shape[1]
 #expensive Hessian matrix. But, optimization methods in which learning rate adapts itself are the stte of the art. Among such methods
 #are Adagrad, RMSprop and Adam in which Adam works best since it doesn't use the raw gradient for parameter update, rather a smoothened 
 #one. 
-#Nesterov momentum is also used if learning rate is to be kept constant for all paramter updates unlike Adam. I received an error of 7.91%
+#Nesterov momentum is also used if learning rate is to be kept constant for all paramter updates unlike Adam. I received an error of 3.21%
 #as compared to Adam which gave an error of 1.81%.
 #
 def baseline_model():
@@ -83,7 +83,7 @@ def baseline_model():
 	model.add(Dense(num_classes, init='normal', activation='softmax'))
 	# Compile model
 	#sgd = SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
-     	#model.compile(loss='categorical_crossentropy', optimizer='sgd', metrics=['accuracy'])
+     	#model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 	model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 	return model
  #%%
