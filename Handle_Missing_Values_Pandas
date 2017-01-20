@@ -1,0 +1,14 @@
+#%%
+#Training data is from here:https://www.kaggle.com/c/titanic/data
+import pandas as pd
+
+titanic = pd.read_csv(r'C:\Users\j.mehta\Desktop\DataRPM\train.csv')
+#Have to make copy instead of simply assigning because changes made
+#to sub dataframe changes the initial dataframe too
+titanic_mean = titanic.copy()
+titanic_linear = titanic.copy()
+titanic_mean['Age'].fillna((titanic['Age'].mean()), inplace=True)
+titanic_linear["Age"].interpolate(method='linear', inplace=True)
+print "No of null values in Age column for titanic_mean are ", titanic_mean["Age"].isnull().sum()
+print "No of null values in Age column for titanic_linear are ", titanic_linear["Age"].isnull().sum()
+#%%
