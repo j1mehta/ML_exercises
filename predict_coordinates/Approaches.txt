@@ -1,0 +1,25 @@
+Approaches:
+
+1. First approach was to train with a simple CNN with to convolutional layers and without doing any data augmentation. The loss used for training was mse. First, I tried with 10 epochs. The validation loss came stayed above 1. The validation loss after 20 epochs hovered around 0.09 which stayed the same after increasing the epochs to 30.
+
+2. The performance on test data was not good as most of the predictions were around the range 0.4 to 0.6, i.e., middle of the image. Some were negative too.
+
+3. I tried to augment data by flipping images horizontally and vertically and thus creating new datapoint by creating corresponding labels for the augmented images. This approach, although removed the negative values, but the predictions still stayed around the range 0.4 to 0.6. 
+
+4. I concluded that the predictions were not varied enough due to majority of the data points belonging to range 0.4 to 0.6 . I visualized a simple histogram to verify this. To equalize the proportion of data points, I augmented (flipped) only those images that were outside the range of 0.4 and 0.6, but that didn’t help much either.
+
+5. I tried to preprocess the images before feeding it to network. First I tried simple binary thresholding. But that failed in many cases because when the floor was grey, the binarization would engulf the phone too (experimented with a few values of threshold). To increase the contrast, I did histogram equalization before doing thresholding but it didn’t help much.
+
+6. At this point, I thought I need more data points or maybe just a better network. I resorted to transfer learning. I took a simple pre trained VGG 16 and popped off the last layer to replace it 2 neurons for the coordinates and the activation function as linear for regression. Freezing the layer for all convolution block and freezing all of VGG but the last dense layer didn’t bring much improvement either. 
+
+7. For more augmentation, I rotated the images and corresponding labels by 30, 60, 90 and 45 degrees but my loss increased significantly. I concluded that the black parts occurring due to rotation of the images are further confusing the network.
+
+Future approaches:
+
+1. Pad the black part of rotated images with the mean pixel value of the image and training again should yield better results.
+
+2. Semantic segmentation network could be another approach but even for that a significant amount of data augmentation would be required.
+
+3. For data augmentation, applying filters (Gabor?) on images may produce data which has more variance than already applied ones. Focus should be on how to augment on such a way that more variance is introduced. 
+
+

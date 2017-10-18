@@ -1,0 +1,4 @@
+pandas==0.20.3
+sklearn==0.0
+h5py==2.7.1
+imutils==0.4.3
